@@ -11,6 +11,9 @@ def item():
     """Создаём тестовый экземпляр класса"""
     return Item("Тестовый товар", 10.0, 5)
 
+def test_str_repr(item):
+    assert repr(item) == "Item('Тестовый товар', 10.0, 5)"
+    assert str(item) == 'Тестовый товар'
 
 def test_calculate_total_price(item):
     """Проверяем, что выводится общая стоимость товаров"""
