@@ -4,7 +4,7 @@ import csv
 import os
 
 from src.item import Item
-
+from src.phone import Phone
 
 @pytest.fixture
 def item():
@@ -14,6 +14,13 @@ def item():
 def test_str_repr(item):
     assert repr(item) == "Item('Тестовый товар', 10.0, 5)"
     assert str(item) == 'Тестовый товар'
+
+def test_add(item):
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    assert item + phone1 == 10
+    with pytest.raises(Exception) as ex:
+        item + 10
+    assert str(ex.value) == 'Складывать можно только экземпляры одного класса или дочерних классов'
 
 def test_calculate_total_price(item):
     """Проверяем, что выводится общая стоимость товаров"""
