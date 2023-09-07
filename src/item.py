@@ -54,6 +54,15 @@ class Item:
     def __str__(self) -> str:
         return self.__name
 
+    def __add__(self, other) -> int or Exception:
+        """
+        Сложение экземпляров класса Item и дочерних классов.
+        Выбрасывает исключение, если один или оба операнда не экземпляры Item или дочерних классов.
+        """
+        if issubclass(other.__class__, self.__class__):
+            return self.quantity + other.quantity
+        else:
+            raise Exception('Складывать можно только экземпляры одного класса или дочерних классов')
     @property
     def name(self):
         return self.__name
