@@ -1,7 +1,7 @@
 import os
 import csv
 from math import floor
-from src.errors import InstantiateCSVError
+from src.error import InstantiateCSVError
 
 class Item:
     """
