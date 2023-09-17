@@ -1,6 +1,7 @@
 import os
 import csv
 from math import floor
+from src.errors import InstantiateCSVError
 
 class Item:
     """
@@ -24,8 +25,12 @@ class Item:
                 for line in reader:
                     item = cls(line['name'], float(line['price']), int(line['quantity']))
 
+
         except FileNotFoundError:
-            raise FileNotFoundError('Файл отсутствует или поверждён')
+            raise FileNotFoundError('Отсутствует файл item.csv')
+
+        except KeyError:  # Выбросит исключение, т.к. нет ключа в словаре
+            raise InstantiateCSVError('Файл item.csv поврежден')
 
     @staticmethod
     def string_to_number(string):
